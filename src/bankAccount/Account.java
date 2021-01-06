@@ -93,8 +93,10 @@ public class Account {
 
     static String  transferOtherUser(Users sendingUser , Users receivingUser,int transferAmount){
         String mesaj= "";
+
         if (transferAmount>sendingUser.amountAccount1) {
             mesaj= "Sender is poor lol :)";
+
         }if (transferAmount<sendingUser.amountAccount1){
             transferAmount-=transferAmount*0.02;
             sendingUser.amountAccount1-= transferAmount;
@@ -139,8 +141,10 @@ public class Account {
 
     static String transferToOwnAccount(Users obj, int transferAmount){
     String mesaj ="";
+
     if (transferAmount>obj.amountAccount1)
         mesaj= "You need more money dude";
+
     if (transferAmount<obj.amountAccount1){
         transferAmount-=transferAmount*0.01;
         obj.amountAccount1-=transferAmount;

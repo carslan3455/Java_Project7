@@ -6,7 +6,7 @@ public class ReadMe {
         make a transfer between the accounts
         add relative to your account
 
-        First start with Account class > AddRelative class > Users class
+        todo First start with Account class > AddRelative class > Users class
 
         All other information in the classes.
 

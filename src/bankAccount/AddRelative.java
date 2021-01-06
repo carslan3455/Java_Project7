@@ -73,7 +73,7 @@ public class AddRelative {
 
     static boolean relativeAgeChecker(String  relativeAge){
 
-        int age = Integer.parseInt(relativeAge);
+        int age = Integer.parseInt(relativeAge);    // "7"   "18"  "22"
 
         return age >= 18;
     }

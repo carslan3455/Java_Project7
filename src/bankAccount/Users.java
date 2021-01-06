@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class Users {
 
 
-
     /*
         Create String variable name password dateOfBirth marriageStatus  relativeName relativeAge isTransferedSuceesfully
         Create int  accountNumber amountAccount1 accountNumber2 amountAccount2
@@ -75,6 +74,7 @@ public class Users {
      */
     //--------------------------------------------------------------------------------------------------
 
+
     public Users(String name, String password, String dateOfBirth, String marriageStatus, int amountAccount1, int amountAccount2) {
         this.name = name;
         this.password = password;
@@ -88,7 +88,6 @@ public class Users {
         this.dateOfBirth = checkAge(dateOfBirth);
 
     }
-
 
     //--------------------------------------------------------------------------------------------------
     /*
@@ -144,8 +143,8 @@ public class Users {
        relativeAge variable  AddRelative class age  eşittir
 
            --Eğer relativeAge  "0"  a eşit ise
-                relativeName i  "Relative should be more then 18 years old";  e değiştir
-                relativeAge i  "Relative should be more then 18 years old";   e değiştir
+                relativeName i : "Relative should be more then 18 years old";  e değiştir
+                relativeAge i : "Relative should be more then 18 years old";   e değiştir
                return   "Relative should be more then 18 years old";   olmalı
            -- Eğer the relativeAge  "0" a eşit değilse
                return Transaction done successfully
@@ -167,6 +166,7 @@ public class Users {
     public static String CheckMariageStatus(String marriageStatus) {
         Scanner sc = new Scanner(System.in);
         String mesaj= "";
+
         if (marriageStatus.equalsIgnoreCase("married")) {
             System.out.print("Do you want to add add your relative?(Yes-No) : ");
             String relativStatus = sc.nextLine();
@@ -176,18 +176,19 @@ public class Users {
                 System.out.print("Date of birth relative? : ");
                 String relativDOB = sc.nextLine();
 
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                LocalDate today = LocalDate.now();
+//                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//                LocalDate today = LocalDate.now();
+//
+//                Period relativeAge = Period.between(LocalDate.parse(relativDOB,formatter),today);
 
-                Period relativeAge = Period.between(LocalDate.parse(relativDOB,formatter),today);
 
+                AddRelative obj = new AddRelative(relativName, relativDOB);
+//                AddRelative obj = new AddRelative(relativName, relativeAge.toString());
+//                LocalDate birthT = LocalDate.parse(relativDOB);
+//              //  int age =today.compareTo(birthT);    // 2 tarih arasindaki farki veriyor
+//                int age = today.getYear()-relativeAge.getYears();
 
-                AddRelative obj = new AddRelative(relativName, relativeAge.toString());
-                LocalDate birthT = LocalDate.parse(relativDOB);
-              //  int age =today.compareTo(birthT);    // 2 tarih arasindaki farki veriyor
-                int age = today.getYear()-relativeAge.getYears();
-
-                if (age==0) {
+                if (obj.age.equalsIgnoreCase("0")) {
                     obj.fullName = "Relative should be more then 18 years old";
                     obj.age = "Relative should be more then 18 years old";
                     mesaj = "Relative should be more then 18 years old";
@@ -249,7 +250,7 @@ public class Users {
      */
     //--------------------------------------------------------------------------------------------------
     public static String checkAge(String myDOB) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate today = LocalDate.now();
         LocalDate birth = LocalDate.parse(myDOB,formatter);
 
@@ -327,11 +328,13 @@ public class Users {
            Scanner sc = new Scanner(System.in);
            System.out.print("Do you want to transfer between your accounts or different user : ");
            String antwort = sc.nextLine();
+           System.out.print("How much dollars will you transfer : ");
+           int transferAmount = sc.nextInt();
 
            if (antwort.equalsIgnoreCase("own"))
-               Account.transferToOwnAccount(obj1,200);
+               Account.transferToOwnAccount(obj1,transferAmount);
            else
-               Account.transferOtherUser(obj1,obj2,200);
+               Account.transferOtherUser(obj1,obj2,transferAmount);
        }
 
 //--------------------------------------------------------------------------------------------------
